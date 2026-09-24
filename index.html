@@ -1,1005 +1,1202 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Maria's Birthday 🎀</title>
-
-    <style>
-                * {
-                    box-sizing: border-box;
-                    margin: 0;
-                    padding: 0;
-                }
-
-                body {
-                    min-height: 100vh;
-                    font-family: "Segoe UI", Arial, sans-serif;
-                    background: linear-gradient(135deg, #ffdce9, #dff5ff, #fff4b8);
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    overflow: hidden;
-                    color: #666;
-                }
-
-                .floating {
-                    position: fixed;
-                    font-size: 24px;
-                    animation: float 7s linear infinite;
-                    opacity: 0.7;
-                    z-index: 1;
-                }
-
-                @keyframes float {
-                    0% {
-                        transform: translateY(110vh) rotate(0deg);
-                        opacity: 0;
-                    }
-
-                    15% {
-                        opacity: 0.8;
-                    }
-
-                    100% {
-                        transform: translateY(-120vh) rotate(360deg);
-                        opacity: 0;
-                    }
-                }
-
-                .container {
-                    width: 90%;
-                    max-width: 430px;
-                    min-height: 570px;
-                    background: rgba(255, 255, 255, 0.88);
-                    border-radius: 32px;
-                    padding: 35px 25px;
-                    text-align: center;
-                    box-shadow: 0 18px 45px rgba(120, 150, 170, 0.22);
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    position: relative;
-                    z-index: 2;
-                    backdrop-filter: blur(8px);
-                }
-
-                .page {
-                    width: 100%;
-                    animation: appear 0.7s ease;
-                }
-
-                @keyframes appear {
-                    from {
-                        opacity: 0;
-                        transform: translateY(12px);
-                    }
-
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
-
-                .hidden {
-                    display: none;
-                }
-
-                .top-icon {
-                    font-size: 58px;
-                    margin-bottom: 12px;
-                    animation: bounce 2s infinite;
-                }
-
-                @keyframes bounce {
-
-                    0%, 100% {
-                        transform: translateY(0);
-                    }
-
-                    50% {
-                        transform: translateY(-8px);
-                    }
-                }
-
-                h1 {
-                    color: #e88aaa;
-                    font-size: 30px;
-                    margin-bottom: 12px;
-                }
-
-                h2 {
-                    color: #78b8d4;
-                    font-size: 27px;
-                    margin-bottom: 20px;
-                }
-
-                .subtitle {
-                    font-size: 15px;
-                    color: #999;
-                    margin-bottom: 18px;
-                }
-
-                .loading-text {
-                    font-size: 15px;
-                    color: #888;
-                    margin-bottom: 12px;
-                }
-
-                .progress-box {
-                    width: 100%;
-                    height: 18px;
-                    background: #f2f2f2;
-                    border-radius: 20px;
-                    overflow: hidden;
-                    margin-bottom: 23px;
-                }
-
-                .progress {
-                    width: 0%;
-                    height: 100%;
-                    background: linear-gradient(90deg, #f5a8c2, #8ed5ed);
-                    border-radius: 20px;
-                    transition: width 5s ease;
-                }
-
-                button {
-                    border: none;
-                    padding: 14px 28px;
-                    border-radius: 30px;
-                    background: linear-gradient(135deg, #f4a8c1, #8ecfe7);
-                    color: white;
-                    font-size: 15px;
-                    font-weight: bold;
-                    cursor: pointer;
-                    box-shadow: 0 7px 18px rgba(220, 150, 180, 0.25);
-                    transition: 0.25s;
-                }
-
-                    button:hover {
-                        transform: scale(1.06);
-                    }
-
-                    button:active {
-                        transform: scale(0.96);
-                    }
-
-                .catch-button {
-                    position: relative;
-                    transition: transform 0.25s ease;
-                }
-
-                .message {
-                    font-size: 16px;
-                    line-height: 2;
-                    color: #666;
-                    margin-bottom: 25px;
-                }
-
-                    .message p {
-                        margin-bottom: 12px;
-                    }
-
-                .heart {
-                    font-size: 48px;
-                    margin-bottom: 12px;
-                }
-
-                .name {
-                    color: #e88aaa;
-                    font-weight: bold;
-                }
-
-                .code-box {
-                    margin: 20px 0;
-                    padding: 17px;
-                    background: #f7fbfd;
-                    border-radius: 20px;
-                    color: #78a9bd;
-                    font-size: 14px;
-                    line-height: 1.9;
-                    border: 1px dashed #c6e6f1;
-                }
-
-                .signature {
-                    margin-top: 20px;
-                    color: #e88aaa;
-                    font-size: 15px;
-                    font-weight: bold;
-                }
-
-                .small-note {
-                    margin-top: 22px;
-                    font-size: 13px;
-                    color: #aaa;
-                }
-
-                .sparkles {
-                    font-size: 24px;
-                    margin: 12px 0;
-                    letter-spacing: 5px;
-                }
-
-
-                /* =========================
-        CAKE GAME
-        ========================= */
-
-                .cake-title {
-                    color: #e88aaa;
-                    font-size: 25px;
-                    margin-bottom: 5px;
-                }
-
-                .cake-step {
-                    color: #999;
-                    font-size: 14px;
-                    margin-bottom: 15px;
-                }
-
-                .cake-area {
-                    height: 275px;
-                    position: relative;
-                    display: flex;
-                    justify-content: center;
-                    align-items: flex-end;
-                    margin-bottom: 15px;
-                }
-
-                .plate {
-                    position: absolute;
-                    bottom: 15px;
-                    width: 220px;
-                    height: 15px;
-                    background: #ffffff;
-                    border-radius: 50%;
-                    box-shadow: 0 5px 12px rgba(150, 170, 180, 0.2);
-                }
-
-                .cake {
-                    position: relative;
-                    width: 150px;
-                    height: 180px;
-                    margin-bottom: 28px;
-                }
-
-                .cake-layer {
-                    position: absolute;
-                    left: 10px;
-                    width: 130px;
-                    height: 38px;
-                    border-radius: 8px;
-                    opacity: 0;
-                    transform: translateY(-80px);
-                }
-
-                    .cake-layer.show {
-                        opacity: 1;
-                        transform: translateY(0);
-                        animation: cakeDrop 0.7s ease forwards;
-                    }
-
-                .layer-one {
-                    bottom: 0;
-                    background: #a86f4f;
-                }
-
-                .layer-two {
-                    bottom: 38px;
-                    background: #a86f4f;
-                }
-
-                .layer-three {
-                    bottom: 76px;
-                    background: #a86f4f;
-                }
-
-                @keyframes cakeDrop {
-                    0% {
-                        opacity: 0;
-                        transform: translateY(-80px);
-                    }
-
-                    70% {
-                        transform: translateY(8px);
-                    }
-
-                    100% {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
-
-                .cream {
-                    position: absolute;
-                    left: 6px;
-                    width: 138px;
-                    height: 14px;
-                    background: #e88aaa;
-                    border-radius: 10px;
-                    opacity: 0;
-                    transform: scaleX(0);
-                }
-
-                    .cream.show {
-                        opacity: 1;
-                        transform: scaleX(1);
-                        animation: creamAppear 0.5s ease forwards;
-                    }
-
-                .cream-one {
-                    bottom: 34px;
-                }
-
-                .cream-two {
-                    bottom: 72px;
-                }
-
-                .cream-three {
-                    bottom: 110px;
-                }
-
-                @keyframes creamAppear {
-                    from {
-                        opacity: 0;
-                        transform: scaleX(0);
-                    }
-
-                    to {
-                        opacity: 1;
-                        transform: scaleX(1);
-                    }
-                }
-
-                .cake-decoration {
-                    position: absolute;
-                    font-size: 20px;
-                    opacity: 0;
-                }
-
-                    .cake-decoration.show {
-                        opacity: 1;
-                        animation: pop 0.5s ease;
-                    }
-
-                .dec1 {
-                    left: 22px;
-                    bottom: 93px;
-                }
-
-                .dec2 {
-                    left: 63px;
-                    bottom: 92px;
-                }
-
-                .dec3 {
-                    right: 22px;
-                    bottom: 93px;
-                }
-
-                @keyframes pop {
-                    0% {
-                        transform: scale(0);
-                    }
-
-                    80% {
-                        transform: scale(1.2);
-                    }
-
-                    100% {
-                        transform: scale(1);
-                    }
-                }
-
-                .candle {
-                    position: absolute;
-                    left: 69px;
-                    bottom: 115px;
-                    width: 13px;
-                    height: 43px;
-                    border-radius: 5px;
-                    background: repeating-linear-gradient( 45deg, #8ed5ed, #8ed5ed 8px, #ffffff 8px, #ffffff 16px );
-                    opacity: 0;
-                }
-
-                    .candle.show {
-                        opacity: 1;
-                        animation: pop 0.5s ease;
-                    }
-
-                .flame {
-                    position: absolute;
-                    width: 18px;
-                    height: 24px;
-                    left: -3px;
-                    top: -20px;
-                    border-radius: 50% 50% 40% 40%;
-                    background: #ffd85a;
-                    box-shadow: 0 0 12px #ffd85a;
-                    opacity: 0;
-                }
-
-                    .flame.lit {
-                        opacity: 1;
-                        animation: flicker 0.5s infinite alternate;
-                    }
-
-                @keyframes flicker {
-                    from {
-                        transform: scale(1);
-                    }
-
-                    to {
-                        transform: scale(1.12);
-                    }
-                }
-
-                .cake-complete {
-                    color: #78b8d4;
-                    font-weight: bold;
-                    font-size: 18px;
-                    margin-bottom: 15px;
-                    animation: pop 0.5s ease;
-                }
-
-                .music-note {
-                    font-size: 12px;
-                    color: #aaa;
-                    margin-top: 12px;
-                }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Maria's Birthday 🎀</title>
+
+<style>
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+body {
+min-height: 100vh;
+font-family: "Segoe UI", Arial, sans-serif;
+background: linear-gradient(135deg, #ffdce9, #dff5ff, #fff4b8);
+display: flex;
+justify-content: center;
+align-items: center;
+overflow: hidden;
+color: #666;
+}
+
+.floating {
+position: fixed;
+font-size: 24px;
+animation: float 7s linear infinite;
+opacity: 0.7;
+z-index: 1;
+}
+
+@keyframes float {
+0% {
+transform: translateY(110vh) rotate(0deg);
+opacity: 0;
+}
+
+15% {
+opacity: 0.8;
+}
+
+100% {
+transform: translateY(-120vh) rotate(360deg);
+opacity: 0;
+}
+}
+
+.container {
+width: 90%;
+max-width: 430px;
+min-height: 570px;
+background: rgba(255, 255, 255, 0.88);
+border-radius: 32px;
+padding: 35px 25px;
+text-align: center;
+box-shadow: 0 18px 45px rgba(120, 150, 170, 0.22);
+display: flex;
+justify-content: center;
+align-items: center;
+position: relative;
+z-index: 2;
+backdrop-filter: blur(8px);
+}
+
+.page {
+width: 100%;
+animation: appear 0.7s ease;
+}
+
+@keyframes appear {
+from {
+opacity: 0;
+transform: translateY(12px);
+}
+
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+.hidden {
+display: none;
+}
+
+.top-icon {
+font-size: 58px;
+margin-bottom: 12px;
+animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+
+0%, 100% {
+transform: translateY(0);
+}
+
+50% {
+transform: translateY(-8px);
+}
+}
+
+h1 {
+color: #e88aaa;
+font-size: 30px;
+margin-bottom: 12px;
+}
+
+h2 {
+color: #78b8d4;
+font-size: 27px;
+margin-bottom: 20px;
+}
+
+.subtitle {
+font-size: 15px;
+color: #999;
+margin-bottom: 18px;
+}
+
+.loading-text {
+font-size: 15px;
+color: #888;
+margin-bottom: 12px;
+}
+
+.progress-box {
+width: 100%;
+height: 18px;
+background: #f2f2f2;
+border-radius: 20px;
+overflow: hidden;
+margin-bottom: 23px;
+}
+
+.progress {
+width: 0%;
+height: 100%;
+background: linear-gradient(90deg, #f5a8c2, #8ed5ed);
+border-radius: 20px;
+transition: width 5s ease;
+}
+
+button {
+border: none;
+padding: 14px 28px;
+border-radius: 30px;
+background: linear-gradient(135deg, #f4a8c1, #8ecfe7);
+color: white;
+font-size: 15px;
+font-weight: bold;
+cursor: pointer;
+box-shadow: 0 7px 18px rgba(220, 150, 180, 0.25);
+transition: 0.25s;
+}
+
+button:hover {
+transform: scale(1.06);
+}
+
+button:active {
+transform: scale(0.96);
+}
+
+.catch-button {
+position: relative;
+transition: transform 0.25s ease;
+}
+
+.message {
+font-size: 16px;
+line-height: 2;
+color: #666;
+margin-bottom: 25px;
+}
+
+.message p {
+margin-bottom: 12px;
+}
+
+.heart {
+font-size: 48px;
+margin-bottom: 12px;
+}
+
+.name {
+color: #e88aaa;
+font-weight: bold;
+}
+
+.code-box {
+margin: 20px 0;
+padding: 17px;
+background: #f7fbfd;
+border-radius: 20px;
+color: #78a9bd;
+font-size: 14px;
+line-height: 1.9;
+border: 1px dashed #c6e6f1;
+}
+
+.signature {
+margin-top: 20px;
+color: #e88aaa;
+font-size: 15px;
+font-weight: bold;
+}
+
+.small-note {
+margin-top: 22px;
+font-size: 13px;
+color: #aaa;
+}
+
+.sparkles {
+font-size: 24px;
+margin: 12px 0;
+letter-spacing: 5px;
+}
+
+
+/* =========================
+CAKE GAME
+========================= */
+
+.cake-title {
+color: #e88aaa;
+font-size: 25px;
+margin-bottom: 5px;
+}
+
+.cake-step {
+color: #999;
+font-size: 14px;
+margin-bottom: 15px;
+}
+
+.cake-area {
+height: 275px;
+position: relative;
+display: flex;
+justify-content: center;
+align-items: flex-end;
+margin-bottom: 15px;
+overflow: visible;
+}
+
+.plate {
+position: absolute;
+bottom: 15px;
+width: 220px;
+height: 15px;
+background: #ffffff;
+border-radius: 50%;
+box-shadow: 0 5px 12px rgba(150, 170, 180, 0.2);
+z-index: 1;
+}
+
+.cake {
+position: relative;
+width: 150px;
+height: 180px;
+margin-bottom: 28px;
+z-index: 3;
+}
+
+.cake-layer {
+position: absolute;
+left: 10px;
+width: 130px;
+height: 38px;
+border-radius: 8px;
+opacity: 0;
+transform: translateY(-80px);
+}
+
+.cake-layer.show {
+opacity: 1;
+transform: translateY(0);
+animation: cakeDrop 0.7s ease forwards;
+}
+
+.layer-one {
+bottom: 0;
+background: #a86f4f;
+}
+
+.layer-two {
+bottom: 38px;
+background: #a86f4f;
+}
+
+.layer-three {
+bottom: 76px;
+background: #a86f4f;
+}
+
+@keyframes cakeDrop {
+0% {
+opacity: 0;
+transform: translateY(-80px);
+}
+
+70% {
+transform: translateY(8px);
+}
+
+100% {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+.cream {
+position: absolute;
+left: 6px;
+width: 138px;
+height: 14px;
+background: #e88aaa;
+border-radius: 10px;
+opacity: 0;
+transform: scaleX(0);
+z-index: 4;
+}
+
+.cream.show {
+opacity: 1;
+transform: scaleX(1);
+animation: creamAppear 0.5s ease forwards;
+}
+
+.cream-one {
+bottom: 34px;
+}
+
+.cream-two {
+bottom: 72px;
+}
+
+/* Final pink drip cream */
+
+.cream-three {
+bottom: 109px;
+height: 16px;
+background: #ffc1d6;
+border-radius: 10px 10px 8px 8px;
+z-index: 5;
+overflow: visible;
+}
+
+.cream-three .drip {
+position: absolute;
+top: 9px;
+width: 11px;
+background: #ffc1d6;
+border-radius: 0 0 8px 8px;
+}
+
+.cream-three .drip-one {
+left: 19px;
+height: 22px;
+}
+
+.cream-three .drip-two {
+left: 55px;
+height: 13px;
+}
+
+.cream-three .drip-three {
+left: 91px;
+height: 25px;
+}
+
+.cream-three .drip-four {
+right: 17px;
+height: 17px;
+}
+
+@keyframes creamAppear {
+from {
+opacity: 0;
+transform: scaleX(0);
+}
+
+to {
+opacity: 1;
+transform: scaleX(1);
+}
+}
+
+.cake-decoration {
+position: absolute;
+font-size: 20px;
+opacity: 0;
+z-index: 6;
+}
+
+.cake-decoration.show {
+opacity: 1;
+animation: pop 0.5s ease;
+}
+
+.dec1 {
+left: 22px;
+bottom: 93px;
+}
+
+.dec2 {
+left: 63px;
+bottom: 92px;
+}
+
+.dec3 {
+right: 22px;
+bottom: 93px;
+}
+
+@keyframes pop {
+0% {
+transform: scale(0);
+}
+
+80% {
+transform: scale(1.2);
+}
+
+100% {
+transform: scale(1);
+}
+}
+
+.candle {
+position: absolute;
+left: 69px;
+bottom: 115px;
+width: 13px;
+height: 43px;
+border-radius: 5px;
+background: repeating-linear-gradient( 45deg, #8ed5ed, #8ed5ed 8px, #ffffff 8px, #ffffff 16px );
+opacity: 0;
+z-index: 8;
+}
+
+.candle.show {
+opacity: 1;
+animation: pop 0.5s ease;
+}
+
+.flame {
+position: absolute;
+width: 18px;
+height: 24px;
+left: -3px;
+top: -20px;
+border-radius: 50% 50% 40% 40%;
+background: #ffd85a;
+box-shadow: 0 0 12px #ffd85a;
+opacity: 0;
+}
+
+.flame.lit {
+opacity: 1;
+animation: flicker 0.5s infinite alternate;
+}
+
+@keyframes flicker {
+from {
+transform: scale(1);
+}
+
+to {
+transform: scale(1.12);
+}
+}
+
+.cake-complete {
+color: #78b8d4;
+font-weight: bold;
+font-size: 18px;
+margin-bottom: 15px;
+animation: pop 0.5s ease;
+}
+
+.music-note {
+font-size: 12px;
+color: #aaa;
+margin-top: 12px;
+}
+
+
+/* =========================
+FIREWORKS
+========================= */
+
+.fireworks {
+position: absolute;
+inset: 0;
+z-index: 2;
+pointer-events: none;
+overflow: visible;
+}
+
+.firework {
+position: absolute;
+width: 1px;
+height: 1px;
+pointer-events: none;
+}
+
+.firework-particle {
+position: absolute;
+left: -2px;
+top: -2px;
+width: 4px;
+height: 11px;
+border-radius: 50%;
+background: var(--firework-color);
+box-shadow: 0 0 7px var(--firework-color);
+transform-origin: center bottom;
+animation: fireworkBurst 3s ease-out forwards;
+}
+
+@keyframes fireworkBurst {
+0% {
+opacity: 1;
+transform:
+rotate(var(--angle))
+translateY(0)
+scale(0.35);
+}
+
+65% {
+opacity: 1;
+}
+
+100% {
+opacity: 0;
+transform:
+rotate(var(--angle))
+translateY(var(--distance))
+scale(0.8);
+}
+}
+
+</style>
 </head>
 
 
 <body>
 
-    <!-- Floating cute decorations -->
+<!-- Floating cute decorations -->
 
-    <div class="floating" style="left: 6%; animation-delay: 0s;">🫧</div>
-    <div class="floating" style="left: 20%; animation-delay: 2s;">🩷</div>
-    <div class="floating" style="left: 40%; animation-delay: 4s;">✨</div>
-    <div class="floating" style="left: 62%; animation-delay: 1s;">🎀</div>
-    <div class="floating" style="left: 82%; animation-delay: 3s;">💛</div>
-    <div class="floating" style="left: 93%; animation-delay: 5s;">🫧</div>
+<div class="floating" style="left: 6%; animation-delay: 0s;">🫧</div>
+<div class="floating" style="left: 20%; animation-delay: 2s;">🩷</div>
+<div class="floating" style="left: 40%; animation-delay: 4s;">✨</div>
+<div class="floating" style="left: 62%; animation-delay: 1s;">🎀</div>
+<div class="floating" style="left: 82%; animation-delay: 3s;">💛</div>
+<div class="floating" style="left: 93%; animation-delay: 5s;">🫧</div>
 
 
-    <div class="container">
+<div class="container">
 
 
-        <!-- PAGE 1 -->
+<!-- PAGE 1 -->
 
-        <div class="page" id="page1">
+<div class="page" id="page1">
 
-            <div class="top-icon">
-                🥳🌸˚⋆
-            </div>
+<div class="top-icon">
+🥳🌸˚⋆
+</div>
 
-            <h1>Maria.exe</h1>
+<h1>Maria.exe</h1>
 
-            <p class="subtitle">
-                A little surprise is loading...
-            </p>
+<p class="subtitle">
+A little surprise is loading...
+</p>
 
-            <p class="loading-text">
-                Searching for the cute girl...
-            </p>
+<p class="loading-text">
+Searching for the cute girl...
+</p>
 
-            <div class="progress-box">
-                <div class="progress" id="progress"></div>
-            </div>
+<div class="progress-box">
+<div class="progress" id="progress"></div>
+</div>
 
-            <button id="catchButton"
-                    class="catch-button hidden"
-                    onclick="tryToCatch(event)">
-                Try to catch me! 👀
-            </button>
+<button id="catchButton"
+class="catch-button hidden"
+onclick="tryToCatch(event)">
+Try to catch me! 👀
+</button>
 
-        </div>
+</div>
 
 
-        <!-- PAGE 2 - CAKE GAME -->
+<!-- PAGE 2 - CAKE GAME -->
 
-        <div class="page hidden" id="cakePage">
+<div class="page hidden" id="cakePage">
 
-            <h2 class="cake-title">
-                Let's decorate your cake! 🎂
-            </h2>
+<h2 class="cake-title">
+Let's decorate your cake! 🎂
+</h2>
 
-            <p class="cake-step" id="cakeStep">
-                Step 1: Add the first layer 🍰
-            </p>
+<p class="cake-step" id="cakeStep">
+Step 1: Add the first layer 🍰
+</p>
 
-            <div class="cake-area">
+<div class="cake-area">
 
-                <div class="plate"></div>
+<div class="fireworks" id="fireworks"></div>
 
-                <div class="cake">
+<div class="plate"></div>
 
-                    <div class="cake-layer layer-one" id="layerOne"></div>
+<div class="cake">
 
-                    <div class="cream cream-one" id="creamOne"></div>
+<div class="cake-layer layer-one" id="layerOne"></div>
 
-                    <div class="cake-layer layer-two" id="layerTwo"></div>
+<div class="cream cream-one" id="creamOne"></div>
 
-                    <div class="cream cream-two" id="creamTwo"></div>
+<div class="cake-layer layer-two" id="layerTwo"></div>
 
-                    <div class="cake-layer layer-three" id="layerThree"></div>
+<div class="cream cream-two" id="creamTwo"></div>
 
-                    <div class="cream cream-three" id="creamThree"></div>
+<div class="cake-layer layer-three" id="layerThree"></div>
 
-                    <div class="cake-decoration dec1" id="dec1">🍓</div>
-                    <div class="cake-decoration dec2" id="dec2">🍒</div>
-                    <div class="cake-decoration dec3" id="dec3">🍓</div>
+<div class="cream cream-three" id="creamThree">
+<span class="drip drip-one"></span>
+<span class="drip drip-two"></span>
+<span class="drip drip-three"></span>
+<span class="drip drip-four"></span>
+</div>
 
-                    <div class="candle" id="candle">
-                        <div class="flame" id="flame"></div>
-                    </div>
+<div class="cake-decoration dec1" id="dec1">🍓</div>
+<div class="cake-decoration dec2" id="dec2">🍒</div>
+<div class="cake-decoration dec3" id="dec3">🍓</div>
 
-                </div>
+<div class="candle" id="candle">
+<div class="flame" id="flame"></div>
+</div>
 
-            </div>
+</div>
 
-            <div id="cakeComplete"></div>
+</div>
 
-            <button id="cakeButton" onclick="decorateCake()">
-                Add the layer 🍰
-            </button>
+<div id="cakeComplete"></div>
 
-            <div class="music-note">
-                🎶 Happy Birthday music is playing...
-            </div>
+<button id="cakeButton" onclick="decorateCake()">
+Add the layer 🍰
+</button>
 
-        </div>
+<div class="music-note">
+🎶 Happy Birthday music is playing...
+</div>
 
+</div>
 
-        <!-- PAGE 3 -->
 
-        <div class="page hidden" id="page3">
+<!-- PAGE 3 -->
 
-            <div class="heart">
-                🎂🩷
-            </div>
+<div class="page hidden" id="page3">
 
-            <h2>
-                Happy Birthday, <span class="name">Maria!</span>
-            </h2>
+<div class="heart">
+🎂🩷
+</div>
 
-            <div class="sparkles">
-                ✨ 🫧 ✨
-            </div>
+<h2>
+Happy Birthday, <span class="name">Maria!</span>
+</h2>
 
-            <div class="message">
+<div class="sparkles">
+✨ 🫧 ✨
+</div>
 
-                <p>
-                    كل عام وأنتِ بخير ماريا 🎀
-                </p>
+<div class="message">
 
-                <p>
-                    أتمنى تكون سنتك الجديدة مليانة
-                    ضحك وفرح وأشياء حلوة تشبهك 🩵
-                </p>
+<p>
+كل عام وأنتِ بخير ماريا 🎀
+</p>
 
-                <p>
-                    وتستاهلين كل الأشياء الجميلة
-                    اليوم وكل يوم ✨
-                </p>
+<p>
+أتمنى تكون سنتك الجديدة مليانة
+ضحك وفرح وأشياء حلوة تشبهك 🩵
+</p>
 
-            </div>
+<p>
+وتستاهلين كل الأشياء الجميلة
+اليوم وكل يوم ✨
+</p>
 
-            <button onclick="showFinal()">
-                There's more... 👀
-            </button>
+</div>
 
-        </div>
+<button onclick="showFinal()">
+There's more... 👀
+</button>
 
+</div>
 
-        <!-- PAGE 4 -->
 
-        <div class="page hidden" id="page4">
+<!-- PAGE 4 -->
 
-            <div class="heart">
-                💌🎀
-            </div>
+<div class="page hidden" id="page4">
 
-            <h2>
-                One more thing...
-            </h2>
+<div class="heart">
+💌🎀
+</div>
 
-            <div class="code-box">
+<h2>
+One more thing...
+</h2>
 
-                💻 This little surprise<br>
-                was coded especially for you ♡
+<div class="code-box">
 
-                <br><br>
+💻 This little surprise<br>
+was coded especially for you ♡
 
-                <span>
-                    because every birthday girl<br>
-                    deserves her own little website ✨
-                </span>
+<br><br>
 
-            </div>
+<span>
+because every birthday girl<br>
+deserves her own little website ✨
+</span>
 
-            <div class="message">
+</div>
 
-                <p>
-                    وبما إني Software Developer 👩🏻‍💻
-                </p>
+<div class="message">
 
-                <p>
-                    كان لازم أسوي لك
-                    Birthday Website خاص فيك 😌🎀
-                </p>
+<p>
+وبما إني Software Developer 👩🏻‍💻
+</p>
 
-                <p>
-                    <strong>And yes...</strong>
-                    <br>
-                    فيه مفاجأة ثانية بانتظارك 🎁👀
-                </p>
+<p>
+كان لازم أسوي لك
+Birthday Website خاص فيك 😌🎀
+</p>
 
-            </div>
+<p>
+<strong>And yes...</strong>
+<br>
+فيه مفاجأة ثانية بانتظارك 🎁👀
+</p>
 
-            <button onclick="showLove()">
-                Open one last thing ♡
-            </button>
+</div>
 
-        </div>
+<button onclick="showLove()">
+Open one last thing ♡
+</button>
 
+</div>
 
-        <!-- PAGE 5 -->
 
-        <div class="page hidden" id="page5">
+<!-- PAGE 5 -->
 
-            <div class="heart">
-                🎀🩷🫧✨
-            </div>
+<div class="page hidden" id="page5">
 
-            <h2>
-                Birthday status: PERFECT ♡
-            </h2>
+<div class="heart">
+🎀🩷🫧✨
+</div>
 
-            <div class="sparkles">
-                ✨ 🎀 ✨
-            </div>
+<h2>
+Birthday status: PERFECT ♡
+</h2>
 
-            <div class="message">
+<div class="sparkles">
+✨ 🎀 ✨
+</div>
 
-                <p>
-                    أتمنى يومك يكون جميل مثلك،
-                    وسنتك الجديدة تكون أحلى
-                    من كل اللي تتمنينه 💗
-                </p>
+<div class="message">
 
-                <p>
-                    Happy Birthday, pretty girl! 🎂🩵
-                </p>
+<p>
+أتمنى يومك يكون جميل مثلك،
+وسنتك الجديدة تكون أحلى
+من كل اللي تتمنينه 💗
+</p>
 
-            </div>
+<p>
+Happy Birthday, pretty girl! 🎂🩵
+</p>
 
-            <div class="signature">
-                From your cousin, Murooj ♡
-            </div>
+</div>
 
-            <div class="small-note">
-                Made with love 🎀
-            </div>
+<div class="signature">
+From your cousin, Murooj ♡
+</div>
 
-        </div>
+<div class="small-note">
+Made with love 🎀
+</div>
 
+</div>
 
-    </div>
 
+</div>
 
-    <!-- Happy Birthday music -->
 
-    <audio id="birthdayMusic" loop>
-        <source src="happy-birthday.mp3" type="audio/mpeg">
-    </audio>
+<!-- Happy Birthday music -->
 
+<audio id="birthdayMusic" loop>
+<source src="happy-birthday.mp3" type="audio/mpeg">
+</audio>
 
-    <script>
 
-        /* =========================
-        PAGE 1 LOADING
-        ========================= */
+<script>
 
-        window.onload = function () {
+/* =========================
+PAGE 1 LOADING
+========================= */
 
-            setTimeout(function () {
-                document.getElementById("progress").style.width = "100%";
-            }, 300);
+window.onload = function () {
 
+setTimeout(function () {
+document.getElementById("progress").style.width = "100%";
+}, 300);
 
-            setTimeout(function () {
 
-                document.getElementById("catchButton")
-                    .classList.remove("hidden");
+setTimeout(function () {
 
-            }, 5500);
+document.getElementById("catchButton")
+.classList.remove("hidden");
 
-        };
+}, 5500);
 
+};
 
-        /* =========================
-        CATCH GAME
-        ========================= */
 
-        let catchAttempts = 0;
+/* =========================
+CATCH GAME
+========================= */
 
-        const escapePositions = [
-            { x: -35, y: -25 },
-            { x: 40, y: 25 },
-            { x: -30, y: 30 }
-        ];
+let catchAttempts = 0;
 
-        function tryToCatch(event) {
+const escapePositions = [
+{ x: -35, y: -25 },
+{ x: 40, y: 25 },
+{ x: -30, y: 30 }
+];
 
-            event.preventDefault();
+function tryToCatch(event) {
 
-            const button =
-                document.getElementById("catchButton");
+event.preventDefault();
 
-            catchAttempts++;
+const button =
+document.getElementById("catchButton");
 
-            /* Fourth attempt = caught */
+catchAttempts++;
 
-            if (catchAttempts >= 4) {
+/* Fourth attempt = caught */
 
-                button.style.transform =
-                    "translate(0, 0)";
+if (catchAttempts >= 4) {
 
-                button.innerText =
-                    "Okay okay... you caught me! 😭🎀";
+button.style.transform =
+"translate(0, 0)";
 
-                setTimeout(function () {
-                    startCake();
-                }, 700);
+button.innerText =
+"Okay okay... you caught me! 😭🎀";
 
-                return;
-            }
+setTimeout(function () {
+startCake();
+}, 700);
 
-            const position =
-                escapePositions[catchAttempts - 1];
+return;
+}
 
-            button.style.transform =
-                `translate(${position.x}px, ${position.y}px)`;
+const position =
+escapePositions[catchAttempts - 1];
 
-        }
+button.style.transform =
+`translate(${position.x}px, ${position.y}px)`;
 
+}
 
-        /* =========================
-        START CAKE GAME
-        ========================= */
 
-        function startCake() {
+/* =========================
+START CAKE GAME
+========================= */
 
-            document.getElementById("page1").classList.add("hidden");
+function startCake() {
 
-            document.getElementById("cakePage")
-                .classList.remove("hidden");
+document.getElementById("page1").classList.add("hidden");
 
-            const music =
-                document.getElementById("birthdayMusic");
+document.getElementById("cakePage")
+.classList.remove("hidden");
 
-            music.currentTime = 0;
+const music =
+document.getElementById("birthdayMusic");
 
-            music.play().catch(function () {
-                console.log("Music could not start.");
-            });
+music.currentTime = 0;
 
-        }
+music.play().catch(function () {
+console.log("Music could not start.");
+});
 
+}
 
-        /* =========================
-        CAKE DECORATION GAME
-        ========================= */
 
-        let cakeStep = 1;
+/* =========================
+FIREWORKS
+========================= */
 
-        function decorateCake() {
+function createFirework(x, y) {
 
-            const stepText =
-                document.getElementById("cakeStep");
+const fireworks =
+document.getElementById("fireworks");
 
-            const button =
-                document.getElementById("cakeButton");
+const burst =
+document.createElement("div");
 
-            if (cakeStep === 1) {
+burst.className = "firework";
 
-                document.getElementById("layerOne")
-                    .classList.add("show");
+burst.style.left = x + "%";
+burst.style.top = y + "%";
 
-                stepText.innerText =
-                    "Step 2: Add some cream! 🩷";
+const colors = [
+"#ffc1d6",
+"#b8e8f7",
+"#ffe89a"
+];
 
-                button.innerText =
-                    "Add the cream 🩷";
+const particleCount = 16;
 
-                cakeStep++;
+for (let i = 0; i < particleCount; i++) {
 
-            }
+const particle =
+document.createElement("span");
 
-            else if (cakeStep === 2) {
+particle.className =
+"firework-particle";
 
-                document.getElementById("creamOne")
-                    .classList.add("show");
+const angle =
+(360 / particleCount) * i;
 
-                stepText.innerText =
-                    "Step 3: Another layer! 🍰";
+const distance =
+32 + (i % 3) * 8;
 
-                button.innerText =
-                    "Add another layer 🍰";
+particle.style.setProperty(
+"--angle",
+angle + "deg"
+);
 
-                cakeStep++;
+particle.style.setProperty(
+"--distance",
+distance + "px"
+);
 
-            }
+particle.style.setProperty(
+"--firework-color",
+colors[i % colors.length]
+);
 
-            else if (cakeStep === 3) {
+burst.appendChild(particle);
+}
 
-                document.getElementById("layerTwo")
-                    .classList.add("show");
+fireworks.appendChild(burst);
 
-                stepText.innerText =
-                    "Step 4: More cream! 🩵";
+setTimeout(function () {
+burst.remove();
+}, 3200);
+}
 
-                button.innerText =
-                    "Add more cream 🩵";
+let fireworksInterval = null;
 
-                cakeStep++;
+function startContinuousFireworks() {
+if (fireworksInterval) return;
 
-            }
+// إطلاق ألعاب نارية أولية فوراً
+createFirework(18, 30);
+createFirework(82, 28);
+createFirework(50, 12);
+createFirework(10, 55);
+createFirework(90, 53);
 
-            else if (cakeStep === 4) {
+// الاستمرار بإطلاقها بشكل متكرر كل 800 ملي ثانية لين يضغط اليوزر
+fireworksInterval = setInterval(function() {
+const randomX = Math.floor(Math.random() * 80) + 10;
+const randomY = Math.floor(Math.random() * 50) + 10;
+createFirework(randomX, randomY);
+}, 800);
+}
 
-                document.getElementById("creamTwo")
-                    .classList.add("show");
 
-                stepText.innerText =
-                    "Step 5: Last cake layer! 🎂";
+/* =========================
+CAKE DECORATION GAME
+========================= */
 
-                button.innerText =
-                    "Add the final layer 🎂";
+let cakeStep = 1;
 
-                cakeStep++;
+function decorateCake() {
 
-            }
+const stepText =
+document.getElementById("cakeStep");
 
-            else if (cakeStep === 5) {
+const button =
+document.getElementById("cakeButton");
 
-                document.getElementById("layerThree")
-                    .classList.add("show");
+if (cakeStep === 1) {
 
-                stepText.innerText =
-                    "Step 6: One last cream! 🩷";
+document.getElementById("layerOne")
+.classList.add("show");
 
-                button.innerText =
-                    "Add the final cream 🩷";
+stepText.innerText =
+"Step 2: Add some cream! 🩷";
 
-                cakeStep++;
+button.innerText =
+"Add the cream 🩷";
 
-            }
+cakeStep++;
 
-            else if (cakeStep === 6) {
+}
 
-                document.getElementById("creamThree")
-                    .classList.add("show");
+else if (cakeStep === 2) {
 
-                stepText.innerText =
-                    "Step 7: Make it cute! ✨";
+document.getElementById("creamOne")
+.classList.add("show");
 
-                button.innerText =
-                    "Decorate it! 🎀";
+stepText.innerText =
+"Step 3: Another layer! 🍰";
 
-                cakeStep++;
+button.innerText =
+"Add another layer 🍰";
 
-            }
+cakeStep++;
 
-            else if (cakeStep === 7) {
+}
 
-                document.getElementById("dec1")
-                    .classList.add("show");
+else if (cakeStep === 3) {
 
-                document.getElementById("dec2")
-                    .classList.add("show");
+document.getElementById("layerTwo")
+.classList.add("show");
 
-                document.getElementById("dec3")
-                    .classList.add("show");
+stepText.innerText =
+"Step 4: More cream! 🩵";
 
-                stepText.innerText =
-                    "Step 8: One last thing... 🕯️";
+button.innerText =
+"Add more cream 🩵";
 
-                button.innerText =
-                    "Add the candle 🕯️";
+cakeStep++;
 
-                cakeStep++;
+}
 
-            }
+else if (cakeStep === 4) {
 
-            else if (cakeStep === 8) {
+document.getElementById("creamTwo")
+.classList.add("show");
 
-                document.getElementById("candle")
-                    .classList.add("show");
+stepText.innerText =
+"Step 5: Last cake layer! 🎂";
 
-                stepText.innerText =
-                    "Now light it! 🔥";
+button.innerText =
+"Add the final layer 🎂";
 
-                button.innerText =
-                    "Light it! 🔥";
+cakeStep++;
 
-                cakeStep++;
+}
 
-            }
+else if (cakeStep === 5) {
 
-            else if (cakeStep === 9) {
+document.getElementById("layerThree")
+.classList.add("show");
 
-                document.getElementById("flame")
-                    .classList.add("lit");
+stepText.innerText =
+"Step 6: One last cream! 🩷";
 
-                stepText.innerText = "";
+button.innerText =
+"Add the final cream 🩷";
 
-                document.getElementById("cakeComplete")
-                    .innerHTML =
-                    '<div class="cake-complete">Cake complete! 🎂✨</div>';
+cakeStep++;
 
-                button.innerText =
-                    "Deliver the cake 🎀";
+}
 
-                cakeStep++;
+else if (cakeStep === 6) {
 
-            }
+document.getElementById("creamThree")
+.classList.add("show");
 
-            else if (cakeStep === 10) {
+stepText.innerText =
+"Step 7: Make it cute! ✨";
 
-                const music =
-                    document.getElementById("birthdayMusic");
+button.innerText =
+"Decorate it! 🎀";
 
-                music.pause();
+cakeStep++;
 
-                music.currentTime = 0;
+}
 
-                document.getElementById("cakePage")
-                    .classList.add("hidden");
+else if (cakeStep === 7) {
 
-                document.getElementById("page3")
-                    .classList.remove("hidden");
+document.getElementById("dec1")
+.classList.add("show");
 
-            }
+document.getElementById("dec2")
+.classList.add("show");
 
-        }
+document.getElementById("dec3")
+.classList.add("show");
 
+stepText.innerText =
+"Step 8: One last thing... 🕯️";
 
-        /* =========================
-        PAGE 3 → PAGE 4
-        ========================= */
+button.innerText =
+"Add the candle 🕯️";
 
-        function showFinal() {
+cakeStep++;
 
-            document.getElementById("page3")
-                .classList.add("hidden");
+}
 
-            document.getElementById("page4")
-                .classList.remove("hidden");
+else if (cakeStep === 8) {
 
-        }
+document.getElementById("candle")
+.classList.add("show");
 
+stepText.innerText =
+"Now light it! 🔥";
 
-        /* =========================
-        PAGE 4 → PAGE 5
-        ========================= */
+button.innerText =
+"Light it! 🔥";
 
-        function showLove() {
+cakeStep++;
 
-            document.getElementById("page4")
-                .classList.add("hidden");
+}
 
-            document.getElementById("page5")
-                .classList.remove("hidden");
+else if (cakeStep === 9) {
 
-        }
+document.getElementById("flame")
+.classList.add("lit");
 
-    </script>
+/* تشغيل الألعاب النارية باستمرار هنا عند إضاءة الشمعة */
+startContinuousFireworks();
+
+stepText.innerText = "";
+
+document.getElementById("cakeComplete")
+.innerHTML =
+'<div class="cake-complete">Cake complete! 🎂✨</div>';
+
+button.innerText =
+"Deliver the cake 🎀";
+
+cakeStep++;
+
+}
+
+else if (cakeStep === 10) {
+
+// إيقاف تكرار الألعاب النارية لما يضغط Deliver the cake
+if (fireworksInterval) {
+clearInterval(fireworksInterval);
+}
+
+const music =
+document.getElementById("birthdayMusic");
+
+music.pause();
+
+music.currentTime = 0;
+
+document.getElementById("cakePage")
+.classList.add("hidden");
+
+document.getElementById("page3")
+.classList.remove("hidden");
+
+}
+
+}
+
+
+/* =========================
+PAGE 3 → PAGE 4
+========================= */
+
+function showFinal() {
+
+document.getElementById("page3")
+.classList.add("hidden");
+
+document.getElementById("page4")
+.classList.remove("hidden");
+
+}
+
+
+/* =========================
+PAGE 4 → PAGE 5
+========================= */
+
+function showLove() {
+
+document.getElementById("page4")
+.classList.add("hidden");
+
+document.getElementById("page5")
+.classList.remove("hidden");
+
+}
+
+</script>
 
 </body>
 
-</html>
+</html> 
